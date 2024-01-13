@@ -7,18 +7,14 @@
     plasma6.url = "github:nix-community/kde2nix";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-stable, plasma6} @ inputs: let
-    system = "x86_64-linux";
-    overlay-stable = final: prev: {
-      stable = import nixpkgs-stable { inherit system; config.allowUnfree = true; };  # unfree needed for unity....
-    };
-  in {
+  outputs = {self, nixpkgs, nixpkgs-stable, plasma6} @ inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      inherit system;
+      system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
-        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
-         ./configuration.nix plasma6.nixosModules.default
+        ./configuration.nix
+        ./hardware-configuration.nix
+        plasma6.nixosModules.default
       ];
     };
 
