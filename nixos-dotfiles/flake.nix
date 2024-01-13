@@ -7,7 +7,7 @@
     plasma6.url = "github:nix-community/kde2nix";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-stable, plasma6} @ inputs: {
+  outputs = {nixpkgs, plasma6} @ inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
