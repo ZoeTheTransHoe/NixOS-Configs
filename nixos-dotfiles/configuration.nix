@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, stable, ... }:
 
 {
   imports =
@@ -109,7 +109,7 @@
       heroic
       krita 
       gimp
-      inputs.nixpkgs-stable.legacyPackages.${system}.unityhub
+      stable.unityhub
     ];
   };
 
