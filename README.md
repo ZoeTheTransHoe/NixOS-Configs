@@ -6,4 +6,5 @@ The files in config (for configuring mangohud, hyfetch etc) can go into ~/.confi
 
 TODO:
 - Get C# and Unity extensions working in VS-Code (Neither flatpak or nix pkg vscode work) 
+
 Meow :3 
