@@ -12,6 +12,7 @@
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
+        ./cachix.nix
         ./configuration.nix
         ./hardware-configuration.nix
         plasma6.nixosModules.default
