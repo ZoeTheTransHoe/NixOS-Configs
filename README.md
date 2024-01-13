@@ -9,3 +9,5 @@ TODO:
 - Get C# and Unity extensions working in VS-Code (Neither flatpak or nix pkg vscode work) 
 
 Meow :3 
+
+![Screenshot_20240113_003250](https://github.com/ZoeTheTransHoe/NixOS-Configs/assets/103337562/783900bf-90a5-466e-b08c-e9edf4a53598)
