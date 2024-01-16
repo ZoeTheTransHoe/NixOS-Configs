@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ inputs, pkgs, stable, ... }:
 
 {
   imports =
@@ -100,10 +100,8 @@
       vlc
       discord
       hyfetch
-      kdeconnect
       neofetch 
       toolbox
-      podman
       prismlauncher
       lutris
       goverlay
@@ -125,7 +123,6 @@
   #  wget
   ifuse 
   libimobiledevice
-  zsh
   htop
   pciutils
   git
@@ -169,14 +166,5 @@
   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
 };
-
-networking.firewall = { 
-    enable = true;
-    allowedTCPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];  
-    allowedUDPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];  
-  }; 
+programs.kdeconnect.enable = true;
 }

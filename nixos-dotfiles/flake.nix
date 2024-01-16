@@ -7,30 +7,21 @@
     plasma6.url = "github:nix-community/kde2nix";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-stable, plasma6} @ inputs: let
+  outputs = {nixpkgs, nixpkgs-stable, plasma6, ...} @ inputs: let
     system = "x86_64-linux";
-    overlay-stable = final: prev: {
-        stable = import nixpkgs-stable { inherit system; config.allowUnfree = true; };  # unfree needed for unity....
-      };
+    stable = import nixpkgs-stable { inherit system; config.allowUnfree = true; };  # unfree needed for unity
   in {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = { inherit inputs; };
+      inherit system
+      specialArgs = { inherit inputs stable; };
       modules = [
-        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
-         ./configuration.nix plasma6.nixosModules.default
+        ./cachix.nix
+        ./configuration.nix
+        ./hardware-configuration.nix
+        plasma6.nixosModules.default
       ];
     };
 
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-  };
-    
-  nixConfig = {
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
   };
 }
