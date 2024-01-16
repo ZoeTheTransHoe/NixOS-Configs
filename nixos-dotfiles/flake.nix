@@ -12,7 +12,7 @@
     stable = import nixpkgs-stable { inherit system; config.allowUnfree = true; };  # unfree needed for unity
   in {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      inherit system
+      inherit system;
       specialArgs = { inherit inputs stable; };
       modules = [
         ./cachix.nix
